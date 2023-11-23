@@ -122,4 +122,27 @@ function getAppointmentview(){
     $result = mysqli_query($con,$sql);
     return $result;
 }
+
+//check the unique appointmentID
+function getcheckuniqueID($id){
+    
+    $con = getconection();
+    //check the appointment id is unique or already exist.
+    $sql ="SELECT * from appointment where AppoinmentID='$id'";
+    $result = mysqli_query($con,$sql);
+    return $result;
+}
+//insert appointment
+function getaddAppointment($id,$patient_name,$doctor_name,$department,$Date,$time,$serial){
+    $con = getconection();
+    $result = getcheckuniqueID($id);
+    if($result->num_rows > 0){
+      echo '<script>alert("This appointment id already exist!")</script>';
+    }
+    else{
+      $sql2 = "INSERT INTO appointment(`AppoinmentID`, `Patient_name`, `Doctor_name`, `Department`, `Appoinment_date`,`Appoinment_time`, `Serial`) VALUES ('$id','$patient_name','$doctor_name','$department','$Date','$time',$serial)";
+      mysqli_query($con,$sql2);
+      header("Location:../views/AppointmentView.php");
+    }
+}
 ?>
