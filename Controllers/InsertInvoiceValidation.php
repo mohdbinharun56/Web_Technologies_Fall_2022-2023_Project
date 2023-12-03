@@ -8,6 +8,7 @@ $id =$_GET['addpayment'];
 
 // $sql="select * from appointment where SLNo='$id'";
 $result= getselectappointment($id);
+// $res=getpayment($doctor_name);
 
 ?>
 <?php

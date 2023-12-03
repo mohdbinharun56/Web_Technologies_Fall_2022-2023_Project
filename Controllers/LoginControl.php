@@ -44,7 +44,25 @@
         else{
             $username = $_POST['username'];
             $password = $_POST['security'];
-            $status = getlogin($username,$password);
+            $result = getlogin($username,$password);
+            
+            if($result->num_rows>0){
+                while($r=mysqli_fetch_assoc($result)){
+                    $_SESSION['username'] = $r['S_Username'];
+                    header("location:../views/Dashboard.php");
+                }
+            }else{
+                echo '<script>';
+                echo 'var userResponse = confirm("username and password invalid!");';
+                echo 'if (userResponse == true) {';
+                echo '  alert("You clicked OK!");';
+                echo '  window.location.href = "../views/Login.php";';
+                echo '} else {';
+                echo '  alert("You clicked Cancel!");';
+                echo '  window.location.href = "../views/Login.php";';
+                echo '}';
+                echo '</script>';
+            }
             
             }
     

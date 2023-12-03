@@ -1,6 +1,8 @@
 <?php
   include '../models/Database.php';
   $con = getconection();
+
+  
   
   $Serial = $apnmnt_ID = $patnt_name = $dctr_name = $deprtmnt = $dte = $srl=$time = ""; 
   $SerialError = $apnmnt_IDError = $patnt_nameError = $dctr_nameError = $deprtmntError = $dteError = $srlError=$timeError = "";
@@ -27,10 +29,10 @@
     }else{
       $deprtmnt = $_GET["department"];
     }
-    if(empty($_GET['date'])){
-      $dteError = "Date is required";
+    if(empty($_GET['day'])){
+      $dteError = "Day is required";
     }else{
-      $dte = $_GET["date"];
+      $dte = $_GET["day"];
     }
     if(empty($_GET['serial'])){
       $srlError = "Serial is required";
@@ -43,17 +45,22 @@
      $time = $_GET["time"];
    }
 
+
     // Insertion
-    if( !empty($_GET['appointmentId']) && !empty($_GET['patientname']) && !empty($_GET['doctor']) && !empty($_GET['department']) && !empty($_GET['date']) && !empty($_GET['serial'])){
+    if( !empty($_GET['appointmentId']) && !empty($_GET['patientname']) && !empty($_GET['doctor']) && !empty($_GET['department']) && !empty($_GET['day']) && !empty($_GET['serial'])){
      $id=$_GET['appointmentId'];
      $patient_name=$_GET['patientname'];
      $doctor_name=$_GET['doctor'];
      $department=$_GET['department'];
-     $Date=$_GET['date'];
+     $Day=$_GET['day'];
      $serial=$_GET['serial'];
      $time = $_GET['time'];
 
-     getaddAppointment($id,$patient_name,$doctor_name,$department,$Date,$time,$serial);
+     $date = strtotime($Day,time());
+     $dat = date('Y-m-d',$date);
+
+     getaddAppointment($id,$patient_name,$doctor_name,$department,$Day,$dat,$time,$serial);
+
      header("Location:../views/AppointmentView.php");
 
      
