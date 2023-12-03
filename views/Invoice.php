@@ -36,7 +36,6 @@ include '../controllers/InvoiceControl.php';
                     <th>Appointment ID</th>
                     <th>Patient Name</th>
                     <th>Doctor name</th>
-                    <th>Serial</th>
                     <th>Appoinment Date</th>
                     <th>Appoinment Time</th>
                     <th>Payment</th>
@@ -50,7 +49,6 @@ include '../controllers/InvoiceControl.php';
                     <td><?php echo $r['Appointment_ID']; ?></td>
                     <td><?php echo $r['Patient_Name'];?></td>
                     <td><?php echo $r['Doctor_Name']; ?></td>
-                    <td><?php echo $r['Serial']; ?></td>
                     <td><?php echo $r['Appointment_Date']; ?></td>
                     <td><?php echo $r['Appoinment_time']; ?></td>
                     <td><?php echo $r['Payment'];?></td>

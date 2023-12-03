@@ -10,7 +10,7 @@ include '../Controllers/PatientProfileControl.php';
     <form method="get">
       <center><table border="1" style="width: 700px;">
         <tr style="width:200px; heigth: 10px;">
-        <td style="text-align: right;" ><a href="Logout.php">Logout</a> <br><br><br></td>
+        <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
         </tr>
         <tr style="height:200px;">
           <td><h3>Patient Profile</h3> <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp

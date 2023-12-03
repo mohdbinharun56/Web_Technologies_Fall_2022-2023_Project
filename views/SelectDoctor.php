@@ -12,7 +12,7 @@ include '../controllers/SelectDoctorControl.php';
             <table border="1" style="width: 700px;">
                 <tr>
                     <td style="height: 50px;text-align:right;">
-                        <a href="Logout.php">Logout</a>
+                        <a href="../controllers/Logout.phps">Logout</a>
                     </td>
                 </tr>
                 <tr>
@@ -28,17 +28,10 @@ include '../controllers/SelectDoctorControl.php';
                             <table border="1" style="width: 200px;">
                                 <tr>
                                     <td><br>
-                                        <select name="doctorname">
-                                            <option value="">Select Doctor Name</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</B></option>
-                                            <option value="C">C</option>
-                                            <option value="D">D</option>
-                                            <option value="E">E</option>
-                                            <option value="F">F</option>
-                                        </select><br><br>
-                                        <input type="submit" name="click" value="click">
-                                        <br><br>
+                                    <input type="search" name="doctorname" id="search" placeholder="Doctor name">
+                                    <br><br>
+                                    <input type="submit" name="click" value="click">
+                                    <br><br>
                                     </td>
                                 </tr>
                             </table><br>

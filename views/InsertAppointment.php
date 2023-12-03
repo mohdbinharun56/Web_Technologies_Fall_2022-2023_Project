@@ -1,14 +1,22 @@
 <?php 
 include '../controllers/InsertAppointmentValidation.php';
+$con = getconection();
+$sql = "SELECT COUNT(AppoinmentID) as appointmentCount FROM appointment;";
+$result = mysqli_query($con, $sql);
+
+$count = mysqli_fetch_assoc($result);
+$Id = $count['appointmentCount'] + 1;
+$appoint = "A-$Id";
 ?>
+
 <!DOCTYPE HTML>
 <html>Appointment Insertion</title>
   </head>
   <body>
-    <form method="get" action="../controllers/InsertAppointmentValidation.php">
+    <form method="get">
       <center><table border="1" style="width: 700px;">
         <tr style="width:200px; heigth: 10px;">
-        <td style="text-align: right;" ><a href="Logout.php">Logout</a> <br><br><br></td>
+        <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
 
         </tr>
         <tr style="height:200px;">
@@ -24,7 +32,7 @@ include '../controllers/InsertAppointmentValidation.php';
                 <tr style="text-align:center;">
                   <td><br><br>
                     Appointment_ID: 
-                    <input type="text" name="appointmentId"><br>
+                    <input type="text" name="appointmentId" value="<?php echo $appoint; ?>" readonly><br>
                     <?php if(empty($_GET['appointmentId'])){?>
                     <span style="color:red;"><?php echo $apnmnt_IDError;?></span><br><br>
                     <?php } ?>
@@ -58,16 +66,18 @@ include '../controllers/InsertAppointmentValidation.php';
                      <?php if(empty($_GET['serial'])){?>
                      <span style="color:red;"><?php echo $srlError;?></span><br><br>
                      <?php } ?>
-                     Appointment Date:
-                     <select name="date">
-                      <option value="">Select_date</option>
+                    
+                     Appointment Day:
+                     <select name="day"><br><br>
+                      <option value="">Select_day</option>
                       <?php
-                        $sql3="select DISTINCT Date from allowed_date_time where Doctor_name='$doctor_name'";
-                        $res = mysqli_query($con,$sql3);
+                        $sql6="select DISTINCT Available_Day from doctor where Doctor_name='$doctor_name'";
+                        $res = mysqli_query($con,$sql6);
                         while($r=mysqli_fetch_assoc($res)){ //  option multiple value from database?>
-                          <option value="<?php echo $r['Date'];?>"><?php echo $r['Date'];?></option>
-                      <?php } ?>    
+                          <option value="<?php echo $r['Available_Day'];?>"> <?php echo $r['Available_Day'];?></option>
+                        <?php } ?>
                     </select><br><br>
+                    
                     Appointment Time:
                      <select name="time">
                       <option value="">Select_time</option>

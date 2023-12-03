@@ -10,7 +10,7 @@ include '../Controllers/PatientControl.php';
     <table border="1" style="width: 700px;">
         <tr style="text-align:right;height: 50px;">
         <td
-          style="text-align: right;" ><a href="Logout.php">Logout</a> <br><br><br>
+          style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br>
         </td>
         </tr>
         <tr>

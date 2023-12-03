@@ -9,13 +9,13 @@ include '../controllers/AppointmentviewControl.php';
   <body>
       <center><table border="1" style="width: 900px;">
         <tr style="width:200px; heigth: 10px;">
-          <td style="text-align: right;" ><a href="Logout.php">Logout</a> <br><br><br></td>
+          <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
         </tr>
         <tr>
           <td style="display:flex;">
           <form action="SelectDoctor.php"><button type="submit" name="add">Add Appoinment</button></form>
-          <form action=""><button type="submit" name="makedatetime">Create Date/Time</button> </form>
-          <form action=""><button type="submit" name="doctorappointment">Doctor Appointment</button> </form>  
+          <form action="../controllers/AllowDateTimeControl.php" method="post"><button type="submit" name="makedatetime">Create Date/Time</button> </form>
+          <form action="AppointmentDoctorList.php"><button type="submit" name="doctorappointment">Doctor Appointment</button> </form>  
         </td>
         </tr>
         <tr style="height:200px;">
@@ -35,6 +35,7 @@ include '../controllers/AppointmentviewControl.php';
                     <th>Patient_name</th>
                     <th>Doctor_name</th>
                     <th>Department</th>
+                    <th>Appoinment_day</th>
                     <th>Appoinment_date</th>
                     <th>Appoinment_time</th>
                     <th>Serial</th>
@@ -46,14 +47,15 @@ include '../controllers/AppointmentviewControl.php';
                     <td><?php echo $r['Patient_name']; ?></td>
                     <td><?php echo $r['Doctor_name'];?></td>
                     <td><?php echo $r['Department']; ?></td>
+                    <td><?php echo $r['Appointment_day']; ?></td>
                     <td><?php echo $r['Appoinment_date']; ?></td>
                     <td><?php echo $r['Appoinment_time']; ?></td>
                     <td><?php echo $r['Serial'];?></td>
 
                     <td>
                       <form  action="EditAppointment.php" method="get"><button type="submit" name="edit"  value="<?php echo $r["SLNo"] ; ?>">Edit</button> </form>
-                      <form action="DeleteAppointment.php" method="get"><button type="submit" name="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
-                      <form  action="AddInvoice.php" method="get"><button type="submit" name="addpayment"  value="<?php echo $r["SLNo"] ; ?>">InsertPayment</button> </form>
+                      <form action="../controllers/DeleteAppointmentControl.php" method="get"><button type="submit" name="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
+                      <form  action="../controllers/InsertInvoiceControl.php" method="get"><button type="submit" name="addpayment"  value="<?php echo $r["SLNo"] ; ?>">InsertPayment</button> </form>
                     </td>
                     
                 </tr>

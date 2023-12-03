@@ -2,21 +2,22 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" href="../css/Loginstyle.css">
 </head>
 <body>
-    <form method="post" action="../Controllers/LoginControl.php"><center>
-        <table border="1" style="width: 700px;">
-            <tr style="height: 50px;">
-                <td style="text-align:center;">Login</td>
+    <form method="post" action="../Controllers/LoginControl.php">
+        <center>
+        <table border="1" id="outertable">
+            <tr>
+                <td id="heading">Login</td>
             </tr>
             <tr>
-                <td><br><br>
+                <td>
                     <center>
                         Username: <input type="text" name="username"><br><br>
                         Password: <input type="password" name="security"><br><br>
                         <input type="submit" name="loginbtn" value="login"><br><br>
-                    </center>
-                    
+                    </center>                 
                 </td>
             </tr>
         </table></center>

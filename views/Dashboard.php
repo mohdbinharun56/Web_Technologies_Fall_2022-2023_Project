@@ -7,35 +7,39 @@ include '../controllers/DashboardControl.php';
 <html>
     <head>
         <title>Dashboard</title>
+        <link rel="stylesheet" href="../css/Dashboardstyle.css">
     </head>
 
     <body>
-       <center> <table border="1" style="width: 700px;">
-            <tr style="width: 200px; height: 30px;">
+       <center> <table border="1" id="outertable">
+            <tr id="outertr1">
                 <td style="text-align:right">
-                <a href="Logout.php">Logout</a></td>
+                <a href="../controllers/Logout.php" id="logout">Logout</a></td>
             </tr>
             <tr>
                 <td>
-                    <h1>Dashboard</h1><br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-                    <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-                    <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-                    <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br>
-                    <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-                    <a href="">Seetings</a> &nbsp &nbsp &nbsp <br><br><br><br> -->
+                    <h1>Dashboard</h1>
+                    <ul>
+                        <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+                        <li><a href="PatientList.php" class="navbar">Patient</a></li>
+                        <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+                        <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+                    </ul>
+                    
+                    <!-- <a href="" class="navbar">Notification</a>&nbsp &nbsp &nbsp
+                    <a href="" class="navbar">Seetings</a> &nbsp &nbsp &nbsp <br><br><br><br> -->
 
-                    <center> <h3>Welcome TO CMS <?php echo strtoupper($username),"!";?></h3> </center><br>&nbsp &nbsp &nbsp&nbsp &nbsp
-                    <input type="text" value="<?php echo "Total Patient: $total_patientsum";?>"  style="height: 100px;text-align:center;"readonly> &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Total Appointment: $total_appcount";?>" style="height: 100px;text-align:center;" readonly> <br><br>&nbsp &nbsp &nbsp&nbsp &nbsp
-                    <input type="text" value="<?php echo "Average Patients per Doctor:", $avg_patient_per_doctor;?>" style="height:100px;width:250px;" readonly>
+                    <h3>Welcome TO CMS <?php echo strtoupper($username),"!";?></h3><br>
+                    <input type="text" class="count" value="<?php echo "Total Patient: $total_patientsum";?>" readonly>
+                    <input type="text" class="count" value="<?php echo "Total Appointment: $total_appcount";?>" readonly>
+                    <input type="text" class="count" value="<?php echo "Avg Patients per Doctor:",$avg_patient_per_doctor;?>" readonly>
                     <br>
-                    <h4 style="text-align:center;">Appointment Schedule</h4>&nbsp &nbsp &nbsp&nbsp &nbsp
-                    <form method="post" action="../controllers/DashboardControl.php">
-                    <input type="date" name="appointmentschedul" >
-                    <input type="submit" name="button" value="click"><br>
+                    <h4>Appointment Schedule</h4>
+                    <form method="post">
+                    <input type="date" id="date" name="appointmentschedul" >
+                    <input type="submit" id="button" name="button" value="click"><br><br>
                     <center>
-                    <table border="1">
+                    <table border="1" id="innertable">
                         <tr>
                             <th>AppoinmentID</th>
                             <th>Patient_name</th>
