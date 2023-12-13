@@ -1,0 +1,119 @@
+body{
+    background-color: rgb(104, 126, 255);
+    font-family: 'Times New Roman', Times, serif;
+}
+ul{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    background-color: #2c0c1a;
+}
+ul li{
+    list-style: none;
+    margin-left: 30px;
+    font-size: 16px;
+    padding-top: 10px;
+}
+ul li a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: wheat;
+    transition: 0.4s ease-in-out;
+}
+ul li a:hover{
+    color: orange;
+}
+#outertable{
+    background-color: skyblue;
+    width: 950px;
+    margin-top: 100px;
+    border-collapse: collapse;
+    border: 2px solid black;
+    margin-left: 320px;
+}
+#outerrow{
+    text-align: center;
+}
+
+#outertr1{
+    width: 200px; 
+    height: 50px;
+    text-align: right;
+}
+h1{
+    text-align: center;
+    text-decoration: underline;
+}
+h3{ 
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+.count{
+    height: 100px;
+    width: 280px;
+    /* text-align:center; */
+    margin-left: 15px;
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+.count:hover{
+    background-color: aquamarine;
+}
+h4{
+    text-align:center;
+    /* margin-right: 750px; */
+    padding-top: 10px;
+    font-size: 17px;
+}
+#date{
+    margin-left: 300px;
+}
+#button{
+    background-color: orangered;
+    width: 60px;
+    height: 25px;
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    font-weight: 700;
+}
+#button:hover{
+    background-color: beige;
+    width: 60px;
+    height: 25px;
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    font-weight: 700;
+}
+#innertable{
+    border-collapse: collapse;
+    border: 2px solid blueviolet;
+    background-color: white;
+}
+#logout{
+    text-decoration: none;
+    color: rgb(4, 54, 74);
+    font-size: large;
+    font-weight: bold;
+    margin-right: 10px;
+}
+#logout:hover{
+    color: rgb(242, 31, 31);
+}
+#user_profile{
+    width: 40px;
+    margin-right: 895px;
+    margin-top: 15px;
+}
+#doctor_details{
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+    transition: 0.4s ease-in-out;
+}
+#doctor_details:hover{
+    background-color: olivedrab;
+}

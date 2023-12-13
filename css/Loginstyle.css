@@ -1,0 +1,14 @@
+body{
+    background-color: rgb(104, 126, 255);
+    font-family: 'Times New Roman', Times, serif;
+}
+#outertable{
+    width: 500px;
+    height: 500px;
+    background-color: skyblue;
+    margin-top: 200px;
+}
+#heading{
+    text-align: center;
+    font-weight: bold;
+}
