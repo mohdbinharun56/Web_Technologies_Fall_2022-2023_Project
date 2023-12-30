@@ -1,59 +1,68 @@
 <?php 
+// session_start();
 include '../Controllers/InsertPatientValidation.php';
 ?>
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title></title>
+    <title>Patient</title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
   </head>
   <body>
     
-    <form method="post">
-      <center><table border="1" style="width: 700px;">
-        <tr style="height:200px;">
-          <td><h1>Patient Register</h1> <br>&nbsp &nbsp &nbsp 
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="Settings.php">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+    <form method="get">
+    <h1>Patient Register</h1>
+            <ul>
+              <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+              <li><a href="PatientList.php" class="navbar">Patient</a></li>
+              <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+              <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+            </ul>
+      <center><table border="1" id="outertable">
+        <tr>
+          <td>
             <center>
-              <table border="1" style="width: 500px;">
-                <tr style="text-align:center;">
+              <table border="1" id="innertable1">
+                <tr id="innerdata">
                   <td><br><br>
-                    Name <input type="text" name="name" id=""><br>
-                    <?php if(empty($_POST['name'])){?>
-                      <span style="color:red"><?php echo $nameError;?></span><br><br>
-                    <?php }?>
-                    Email <input type="email" name="email" id=""><br>
-                    <?php if(empty($_POST['email'])){?>
-                      <span style="color:red"><?php echo $emailError;?></span><br><br>
-                    <?php }?>
-                    UserName <input type="text" name="username" id=""><br>
-                    <?php if(empty($_POST['username'])){?>
-                      <span style="color:red"><?php echo $usernameError;?></span><br><br>
-                    <?php }?>
-                    Password <input type="password" name="password" id=""><br>
-                    <?php if(empty($_POST['password'])){?>
-                      <span style="color:red"><?php echo $passwordError;?></span><br><br>
-                    <?php }?>
-                    Gender
+                   <label for="Name">Name</label>
+                    <input type="text" name="name" id="input"><br>
+                    <?php if(isset($_SESSION['nameError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['nameError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="Email">Email</label> 
+                    <input type="email" name="email" id="input"><br>
+                    <?php if(isset($_SESSION['emailError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['emailError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="UserName">UserName</label> 
+                    <input type="text" name="username" id="input"><br>
+                    <?php if(isset($_SESSION['usernameError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['usernameError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="Password">Password</label> 
+                    <input type="password" name="password" id="input"><br>
+                    <?php if(isset($_SESSION['passwordError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['passwordError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="Gender">Gender</label>
                     <input type="radio" name="gender" value="male">Male
                     <input type="radio" name="gender" value="female">Female
                     <br>
-                    <?php if(empty($_POST['gender'])){?>
-                      <span style="color:red"><?php echo $genderError;?></span><br><br>
-                    <?php }?>
-                    Phone <input type="number" name="phone"><br>
-                    <?php if(empty($_POST['phone'])){?>
-                      <span style="color:red"><?php echo $PhoneError;?></span><br><br>
-                    <?php }?>
-                    Address <input type="text" name="address"> <br>
-                    <?php if(empty($_POST['address'])){?>
-                      <span style="color:red"><?php echo $addressError;?></span><br><br>
-                    <?php }?>
-                    <input type="submit" name="register" value="Save" style="color:blue;"><br><br>
+                    <?php if(isset($_SESSION['genderError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['genderError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="Phone">Phone</label> 
+                    <input type="number" name="phone" id="input"><br>
+                    <?php if(isset($_SESSION['phoneError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['phoneError'];?></span><br><br>
+                    <?php }?><br>
+                    <label for="Address">Address</label> 
+                    <input type="text" name="address" id="input"> <br>
+                    <?php if(isset($_SESSION['addressError'])){?>
+                      <span style="color:red"><?php echo $_SESSION['addressError'];?></span><br><br>
+                    <?php }?><br>
+                    <input type="submit" name="register" value="Save" id="button"><br><br>
                 </td>
                 </tr>
               </table><br><br>
