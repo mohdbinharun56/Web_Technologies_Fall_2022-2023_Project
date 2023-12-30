@@ -4,28 +4,46 @@ include '../Controllers/PatientControl.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Document</title>
+    <title>Patient</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../JavaScript/Access.js"></script>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
+    <style>
+      #button{
+        margin-right: 800px; 
+      }
+    </style>
 </head>
-<body><form method="post"><center>
-    <table border="1" style="width: 700px;">
-        <tr style="text-align:right;height: 50px;">
-        <td
-          style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br>
+<body>
+  
+  <h3>Patient List</h3>
+  <ul>
+    <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+    <li><a href="PatientList.php" class="navbar">Patient</a></li>
+    <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+    <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+    <a href="../controllers/Logout.php" id="logout">Logout</a>
+  </ul>
+  <form method="post"><center>
+  
+    <table border="1" id="outertable">
+        <tr id="outertr1">
+          
+        <td>
+        <form action="../controllers/InsertPatientControl.php"><button type="submit" name="add" id="button">Register Patient</button> </form>  
+        
         </td>
         </tr>
         <tr>
-        <td><h3>Patient List</h3> <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="Settings.php">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+        <td>
+          <input type="text" id="search" placeholder="Search....." onclick="Search()">
+            
             <center>
               <!-- <button type="submit" name="add">Register Patient</button> -->
-              <form action="../controllers/InsertPatientControl.php"><button type="submit" name="add">Register Patient</button> </form> 
-              <table border="1" style="width: 500px; text-align:center;">
-                <tr style="text-align:center;">
+                      
+              <table border="1" id="innertable">
+              <thead>
+                <tr>
                   <br><br>
                     <th>Patient_Name</th>
                     <th>Email</th>
@@ -37,7 +55,8 @@ include '../Controllers/PatientControl.php';
                 </tr>
       </form>            
                 <?php while($r=mysqli_fetch_assoc($result)){ ?>
-                <tr>
+                  <tbody>
+                <tr id="innerdata">
                     <td><?php echo $r['Patient_Name'];?></td>
                     <td><?php echo $r['Email']; ?></td>
                     <td><?php echo $r['Username'];?></td>
@@ -46,9 +65,9 @@ include '../Controllers/PatientControl.php';
                     <td><?php echo $r['Address'];?></td>
 
                     <td>
-                      <form action="PatientView.php" method="get"><button type="submit" name="view" value="<?php echo $r["SLNo"] ; ?>">View</button></form>
-                      <form method="get" action="EditPatient.php"><button type="submit" name="edit"  value="<?php echo $r['SLNo'] ; ?>">Edit</button> </form>
-                      <form action="../controllers/DeletePatient.php" method="get"><button type="submit" name="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
+                      <form action="PatientView.php" method="get"><button type="submit" name="view" class="action" value="<?php echo $r["SLNo"] ; ?>">View</button></form>
+                      <form method="get" action="EditPatient.php"><button type="submit" name="edit" class="action" value="<?php echo $r['SLNo'] ; ?>">Edit</button> </form>
+                      <form action="../controllers/DeletePatient.php" method="get"><button type="submit" name="delete" class="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
                     </td>
                     
                 </tr>
@@ -60,6 +79,8 @@ include '../Controllers/PatientControl.php';
         </tr> <br><br><br><br>
 
         </tr>
+        </tbody>
+        </thead>
     </table></center>
 </body>
 </html>
