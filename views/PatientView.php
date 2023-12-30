@@ -5,33 +5,43 @@ include '../Controllers/PatientProfileControl.php';
 <html>
   <head>
     <title></title>
+    <link rel="stylesheet" href="../css/PatientViewstyle.css">
   </head>
   <body>
     <form method="get">
-      <center><table border="1" style="width: 700px;">
-        <tr style="width:200px; heigth: 10px;">
-        <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
-        </tr>
-        <tr style="height:200px;">
-          <td><h3>Patient Profile</h3> <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+    <h3>Patient Profile</h3> <br>
+    <ul>
+      <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+      <li><a href="PatientList.php" class="navbar">Patient</a></li>
+      <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+      <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+      <a href="../controllers/Logout.php" id="logout">Logout</a>
+    </ul>
+      <center>
+      <table border="1" id="outertable">
+        <tr id="outerrow1">
+          <td>
             <center>
-              <table border="1" style="width: 500px;">
+              <table border="1" id="innertable">
               <?php while($r=mysqli_fetch_assoc($result)){?>
-                <tr style="text-align:center;">
+                <tr>
                   <td><br><br>
-                    SLNo <input type="number" name="slno" value=<?php echo $r['SLNo'];?> readonly><br><br>
-                    Name <input type="text" name="name" value=<?php echo $r['Patient_Name'];?> readonly><br><br>
-                    Email <input type="email" name="email" value=<?php echo $r['Email'];?> readonly><br><br>
-                    UserName <input type="text" name="username" value=<?php echo $r['Username'];?> readonly><br><br>
-                    Gender <input type="text" name="gender" value=<?php echo $r['Gender'];?> readonly><br><br>
-                    Phone <input type="number" name="phone" value=<?php echo $r['Phone'];?> readonly><br><br>
-                    Address <input type="text" name="address" value=<?php echo $r['Address'];?> readonly> <br><br>
+                  <img src='<?php echo $r["Patient_image"] ?>' style="width: 80px;">
+                  <br>
+                    <label for="SLNo">SLNo:</label>
+                    <input type="number" name="slno" value=<?php echo $r['SLNo'];?> readonly> <br><br>
+                    <label for="Name">Name:</label>
+                    <input type="text" name="name" value=<?php echo $r['Patient_Name'];?> readonly> <br><br>
+                    <label for="Email">Email:</label>
+                    <input type="email" name="email" value=<?php echo $r['Email'];?> readonly> <br><br>
+                    <label for="Phone">Phone:</label>
+                    <input type="number" name="phone" value=<?php echo $r['Phone'];?> readonly> <br><br>
+                    <label for="Address">Address:</label>
+                    <input type="text" name="address" value=<?php echo $r['Address'];?> readonly> <br><br>
+                    <label for="UserName">UserName:</label>
+                    <input type="text" name="username" value=<?php echo $r['Username'];?> readonly> <br><br>
+                    <label for="Gender">Gender:</label>
+                    <input type="text" name="gender" value=<?php echo $r['Gender'];?> readonly> <br><br>
                   </td>
                 </tr>
                 <?php }?>
