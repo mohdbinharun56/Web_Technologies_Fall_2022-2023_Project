@@ -3,27 +3,34 @@ include '../controllers/UpdatePatientControl.php';
 ?>
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <title>Update Patient</title>
+        <link rel="stylesheet" href="../css/StaffProfilestyle.css">
+    </head>
     <body>
         <center>
-            <table border="1" style="width: 700px;">
-                <tr style="width:200px; heigth: 10px;">
-                <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
+            <table border="1" id="outertable">
+                <tr id="outertr1">
+                <td id="outertd"><a href="../controllers/Logout.php">Logout</a></td>
                 </tr>
-                <tr style="height:200px;">
-                    <td><h1>UPDATE Patient</h1><br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                        <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-                        <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-                        <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-                        <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-                        <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-                        <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+                <tr id="outertr2">
+                    <td><h1>UPDATE Patient</h1><br>
+                        <ul>
+                            <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+                            <li><a href="PatientList.php" class="navbar">Patient</a></li>
+                            <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+                            <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+                        </ul>
                         <center>
-                            <table border="1" style="width: 500px;">
+                            <table border="1" id="innertable">
                             <form method="get" action="../controllers/UpdatePatientControl.php">
                             <?php while($r=mysqli_fetch_assoc($result)){?>
-                                <tr style="text-align:center;">
-                                    <td>
-                                        <label>SLNo</label>
+                                <tr id="innerrow">
+                                    <td id="innerdata">
+                                        <br>
+                                        <img src='<?php echo $r["Patient_image"] ?>' style="width: 80px;"> <br>
+                                        <br>
+                                        <label>SLNo:</label>
                                         <input type="number" name="slno" value="<?php echo $r['SLNo'];?>" readonly><br><br>
                                         <label>Name</label>
                                         <input type="text" name="name" value="<?php echo $r['Patient_Name'];?>"><br><br>
@@ -38,7 +45,7 @@ include '../controllers/UpdatePatientControl.php';
                                         <label>Address</label>
                                         <input type="textarea" name="address" value="<?php echo $r['Address'];?>"><br><br>
                                         <?php } ?>
-                                        <button name="update">UPDATE</button><br><br>
+                                        <button name="update">UPDATE</button>
 
                                     </td>
                                 </tr>
