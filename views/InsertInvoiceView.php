@@ -6,47 +6,52 @@ $con = getconection();
 ?>
 <!DOCTYPE HTML>
 <html>
+  <head>
+    <title>Invoice</title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
+  </head>
     <body>
         <form method="post">
-      <center> <table border="1" style="width: 700px;">
-            <tr>
-            <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
+        <h3>Invoice</h3>
+            <ul>
+              <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+              <li><a href="PatientList.php" class="navbar">Patient</a></li>
+              <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+              <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+              <a href="../controllers/Logout.php" id="logout">Logout</a>
+            </ul>
+      <center> <table border="1" id="outertable">
+            <tr id="outertr1">
+            <td> </td>
 
             </tr>
-            <tr style="height:200px;">
-            <td><h3>Invoice</h3> <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="Settings.php">Seetings</a> &nbsp &nbsp &nbsp 
-            <br> <br><br><br> -->
+            <tr>
+            <td>
             <center>
-              <table border="1" style="width: 500px;">
-                <tr style="text-align:center;">
+              <table border="1" id="innertable1">
+                <tr>
                   <?php while($r=mysqli_fetch_assoc($result)){?>
                     <td><br><br>
 
-                      Appoinment ID
+                      <label for="Appoinment ID">Appoinment ID:</label>
                       <input type="text" name="appointmentid" value="<?php echo $r['AppoinmentID'];?>" readonly> <br><br><br>
                       
-                      Patient Name
+                      <label for="Patient Name">Patient Name:</label>
                       <input type="text" name="patientname" value="<?php echo $r['Patient_name'];?>" readonly><br><br><br>
 
-                      Doctor Name
+                      <label for="Doctor Name">Doctor Name:</label>
                       <?php
                       $doctor_name = $r['Doctor_name'];
                       ?>
                       <input type="text" name="doctorname" value="<?php echo $doctor_name;?>" readonly><br><br><br>
                       
-                      Serial
+                      <label for="Serial">Serial:</label>
                       <input type="number" name="serial" value="<?php echo $r['Serial'];?>" readonly><br><br><br>
                       
-                      Date: 
+                      <label for="Date">Date:</label> 
                       <input type="date" name="date" value="<?php echo $r['Appoinment_date'];?>" readonly><br><br><br>
 
-                      Time:
+                      <label for="Time">Time:</label>
                       <input type="text" name="time" value="<?php echo $r['Appoinment_time']; ?>" readonly><br><br><br>
 
                       <?php }?>
@@ -55,16 +60,16 @@ $con = getconection();
                         $sql = "select Distinct Fees from doctor where Doctor_name = '$doctor_name'";
                         $res = mysqli_query ($con,$sql);
                         while($row = mysqli_fetch_assoc($res)){ ?>
-                      Payment:
+                      <label for="Payment">Payment:</label>
                         <input type="number" name="payment" value="<?php echo $row['Fees'];?>" readonly> <br><br>
                           <?php } ?>
-                        Payment Type:
+                          <label for="Payment Type">Payment Type:</label>  
                         <input type="text" name="paymenttype" ><br>
                         <?php if(empty($_POST['paymenttype'])){?>
                         <span style="color:red;"><?php echo $payment_typeError;?></span><br><br>
                         <?php } ?>
 
-                        <select name="status" id="" >
+                        <label for="Select Sstatus">Select Status:</label><select name="status" id="" >
                           <option value="">Select_Status</option>
                           <option value="Paid">Paid</option>
                           <option value="Unpaid">Unpaid</B></option>
@@ -73,9 +78,13 @@ $con = getconection();
                         <?php if(empty($_POST['status'])){?>
                         <span style="color:red;"><?php echo $statusError;?></span><br><br>
                         <?php }?>
-                        <input type="submit" name="register" value="Save" style="color:blue;" ><br><br>
+                        <button name="register" id="button">Save</button>
+                        <!-- <input type="submit" name="register" class="button" value="Save" ><br><br> -->
+                        <br>
                     </td>
+                    <br>
                 </tr>
+                <br>
                 </table><br><br>
             </center>
             </tr>
