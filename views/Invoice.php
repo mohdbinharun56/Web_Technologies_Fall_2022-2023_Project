@@ -5,34 +5,39 @@ include '../controllers/InvoiceControl.php';
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title></title>
+    <title>Invoice</title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
   </head>
   <body>
     <form method="post">
-      <center><table border="1" style="width: 800px;">
-        <tr style="width:200px; heigth: 10px;">
-        <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
+    <h1>Invoice</h1>
+          <ul>
+              <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+              <li><a href="PatientList.php" class="navbar">Patient</a></li>
+              <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+              <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+              <a href="../controllers/Logout.php" id="logout">Logout</a>
+            </ul>
+      <center><table border="1" id="outertable">
+        <tr id="outertr1">
+        <td>
+          <br><br>
+        </td>
 
         </tr>
-        <tr style="height:200px;">
-          <td><h1>Invoice</h1><br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+        <tr>
+          <td>
             
             <center>
-              <select name="checkstatus" id="">
+              <select name="checkstatus">
                 <option value="">Select Status</option>
                 <option value="Paid">Paid</option>
                 <option value="Unpaid">Unpaid</option>
               </select>
-              <button name="searchStatus">search</button>
-              <table border="" style="width: 500px; text-align:center;">
-                 <tr style="text-align:center;">
-                    <br><br>
+              <button name="searchStatus" id="button">search</button>
+              <br><br>
+              <table border="1" id="innertable">
+                 <tr>
                     <th>Appointment ID</th>
                     <th>Patient Name</th>
                     <th>Doctor name</th>
@@ -45,7 +50,7 @@ include '../controllers/InvoiceControl.php';
                   </tr>
                                 
                   <?php while($r=mysqli_fetch_assoc($result)){ ?>
-                  <tr>
+                  <tr id="innerdata">
                     <td><?php echo $r['Appointment_ID']; ?></td>
                     <td><?php echo $r['Patient_Name'];?></td>
                     <td><?php echo $r['Doctor_Name']; ?></td>
@@ -56,8 +61,8 @@ include '../controllers/InvoiceControl.php';
                     <td><?php echo $r['Status'];?></td>
     </form>
                     <td>
-                      <form action="EditInvoice.php" method="get"><button type="submit" name="edit" value="<?php echo $r["SLNo"] ; ?>">Edit</button></form> 
-                      <button type="submit" name="delete" value="<?php echo $r['SLNo'] ; ?>">Delete</button>
+                      <form action="EditInvoice.php" method="get"><button type="submit" name="edit" class="action" value="<?php echo $r["SLNo"] ; ?>">Edit</button></form> 
+                      <button type="submit" name="delete" class="delete" value="<?php echo $r['SLNo'] ; ?>">Delete</button>
                     </td>
                                   
                   </tr>
