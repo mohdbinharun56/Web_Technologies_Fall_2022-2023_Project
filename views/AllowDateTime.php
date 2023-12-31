@@ -5,35 +5,42 @@ include '../controllers/AllowDateTimeValidation.php';
 <html lang="en">
 <head>
     <title>Schedule Date and Time</title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../JavaScript/Access.js"></script>
 </head>
 <body>
     <form method="post">
+    <h3>Allowed Date and Time</h3>
+                        <ul>
+                        <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+                        <li><a href="PatientList.php" class="navbar">Patient</a></li>
+                        <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+                        <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+                        <a href="../controllers/Logout.php" id="logout">Logout</a>
+                        </ul>
         <center>
-            <table border="1" style="width: 700px;">
-                <tr>
-                    <td style="height: 50px;text-align:right;">
-                        <a href="../controllers/Logout.php">Logout</a>
+            <table border="1" id="outertable">
+                <tr id="outertr1">
+                    <td>
+                        <br>
+                        <br>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <h3>Allowed Date and Time</h3><br>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                        <a href="Dashboard.php">Dashboard</a>&nbsp &nbsp &nbsp 
-                        <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-                        <a href="AppointmentView.php">Appointment</a> &nbsp &nbsp &nbsp
-                        <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-                        <!-- <a href="Notification.php">Notification</a>&nbsp &nbsp &nbsp
-                        <a href="Settings.php">Settings</a>&nbsp &nbsp &nbsp <br><br><br><br> -->
+                    <h4>Create Time</h4>
                         <center>
-                            <table border="1" style="width: 200px;">
+                            <br>
+                            <table border="1" id="innertable1">
                                 <tr>
                                     <td><br>
-                                        Time
-                                        <input type="time" name="selecttime"><br>
+                                        <label for="">Time</label>
+                                        <input type="time" name="selecttime">
                                         <?php if(empty($_POST['selecttime'])){?>
                                             <span style="color:red;"><?php echo $timeError;?></span>
                                         <?php } ?><br><br>
-                                        <select name="doctorname">
+                                        <label for=""></label><select name="doctorname">
                                             <option value="">Select Doctor Name</option>
                                             <option value="A">A</option>
                                             <option value="B">B</option>
@@ -41,12 +48,12 @@ include '../controllers/AllowDateTimeValidation.php';
                                             <option value="D">D</option>
                                             <option value="E">E</option>
                                             <option value="F">F</option>
-                                        </select><br>
+                                        </select>
                                         <?php if(empty($_POST['doctorname'])){?>
                                             <span style="color:red;"><?php echo $doctorError;?></span>
                                         <?php } ?><br><br>
 
-                                        <select name="department">
+                                        <label for=""></label><select name="department">
                                             <option value="">Select Doctor Department</option>
                                             <option value="Medicine">Medicine(A)</option>
                                             <option value="Cardiologists">Cardiologists(B)</option>
@@ -54,13 +61,13 @@ include '../controllers/AllowDateTimeValidation.php';
                                             <option value="Gastroenterologists">Gastroenterologists(D)</option>
                                             <option value="Dermatologists">Dermatologists(E)</option>
                                             <option value="Neorology">Neorology(F)</option>
-                                        </select><br>
+                                        </select>
                                         <?php if(empty($_POST['department'])){?>
                                             <span style="color:red;"><?php echo $departmentError;?></span>
                                         <?php } ?><br><br>
 
 
-                                        <input type="submit" name="insert" value="insert">
+                                        <label for=""></label><input type="submit" name="insert" id="button" value="insert">
                                         <br><br>
                                     </td>
                                 </tr>
@@ -68,19 +75,25 @@ include '../controllers/AllowDateTimeValidation.php';
                         </center>
                         <h4>Date Time slot</h4>
                         <center>
-                            <table border="1">
+                        <input type="text" id="search" placeholder="Search...." onclick="Search()">
+                        <br><br>
+                            <table border="1" id="innertable">
+                                <thead>
                                 <tr>
                                     <th>Doctor Name</th>
                                     <th>Department</th>
                                     <th>Time</th>
                                 </tr>
+                                </thead>
                                 <?php while($r=mysqli_fetch_assoc($result)){ ?>
+                                    <tbody>
                                     <tr>
                                         <td><?php echo $r['Doctor_name'] ?></td>
                                         <td><?php echo $r['Department'] ?></td>
                                         <td><?php echo $r['Time'] ?></td>
                                     </tr>
                                 <?php } ?>    
+                                </tbody>
                             </table><br><br>
                         </center>
 
