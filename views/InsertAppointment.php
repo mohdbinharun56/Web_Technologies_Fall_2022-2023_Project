@@ -10,39 +10,46 @@ $appoint = "A-$Id";
 ?>
 
 <!DOCTYPE HTML>
-<html>Appointment Insertion</title>
+<html>
+  <head>
+    <title>
+      Appointment Register
+    </title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
   </head>
   <body>
     <form method="get">
-      <center><table border="1" style="width: 700px;">
-        <tr style="width:200px; heigth: 10px;">
-        <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
+    <h1>Appointment Register</h1>
+          <ul>
+              <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+              <li><a href="PatientList.php" class="navbar">Patient</a></li>
+              <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+              <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+              <a href="../controllers/Logout.php" id="logout">Logout</a>
+            </ul>
+      <center><table border="1" id="outertable">
+        <tr id="outertr1">
+        <td></td>
 
         </tr>
-        <tr style="height:200px;">
-          <td><h1>Appointment Register</h1> <br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br> -->
+        <tr>
+          <td>
             <center>
-              <table border="1" style="width: 500px;">
+              <table border="1" id="innertable1">
                 <tr style="text-align:center;">
                   <td><br><br>
-                    Appointment_ID: 
-                    <input type="text" name="appointmentId" value="<?php echo $appoint; ?>" readonly><br>
+                    <label for="">Appointment_ID:</label> 
+                    <input type="text" name="appointmentId" id="input" value="<?php echo $appoint; ?>" readonly><br>
                     <?php if(empty($_GET['appointmentId'])){?>
                     <span style="color:red;"><?php echo $apnmnt_IDError;?></span><br><br>
                     <?php } ?>
-                    Patient Name: 
-                    <input type="text" name="patientname"><br>
+                    <label for="">Patient Name:</label> 
+                    <input type="text" name="patientname" id="input"><br>
                     <?php if(empty($_GET['patientname'])){?>
                     <span style="color:red;"><?php echo $patnt_nameError;?></span><br><br>
                     <?php } ?>
                     
-                    Department: 
+                    <label for="">Department:</label> 
                     <?php $sql5="select Department from allowed_date_time where Doctor_name='$doctor_name'";
                     $resultdep=mysqli_query($con,$sql5);
                     $r=mysqli_fetch_assoc($resultdep);
@@ -50,24 +57,24 @@ $appoint = "A-$Id";
                       $department = $r['Department'];
                     }
                     ?>
-                    <input type="text" name="department" value="<?php echo $department;?>" readonly><br>
+                    <input type="text" name="department" id="input" value="<?php echo $department;?>" readonly><br>
                     <?php if(empty($_GET['department'])){?>
                     <span style="color:red;"><?php echo $deprtmntError;?></span><br><br>
                     <?php } ?>
 
-                    Doctor: 
-                    <input type="text" name="doctor" value="<?php echo $doctor_name;?>"readonly><br>
+                    <label for="">Doctor:</label>  
+                    <input type="text" name="doctor" id="input" value="<?php echo $doctor_name;?>"readonly><br>
                     <?php if(empty($_GET['doctor'])){?>
                     <span style="color:red;"><?php echo $dctr_nameError;?></span><br><br>
                     <?php } ?>
 
-                    serial:
-                     <input type="number" name="serial" id="" ><br>
+                    <label for="">serial:</label> 
+                     <input type="number" name="serial" id="input" id="" ><br>
                      <?php if(empty($_GET['serial'])){?>
                      <span style="color:red;"><?php echo $srlError;?></span><br><br>
                      <?php } ?>
                     
-                     Appointment Day:
+                     <!-- <label for=""></label> -->
                      <select name="day"><br><br>
                       <option value="">Select_day</option>
                       <?php
@@ -78,7 +85,7 @@ $appoint = "A-$Id";
                         <?php } ?>
                     </select><br><br>
                     
-                    Appointment Time:
+                    <label for=""></label>
                      <select name="time">
                       <option value="">Select_time</option>
                       <?php
@@ -89,7 +96,7 @@ $appoint = "A-$Id";
                       <?php } ?>    
                     </select><br>
                      <br><br>
-                    <input type="submit" name="register" value="Save" style="color:blue;" ><br><br>
+                    <input type="submit" name="register" id="button" value="Save" style="color:blue;" ><br><br>
                   </td>
                 </tr>
               </table><br><br>
