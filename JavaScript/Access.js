@@ -53,21 +53,21 @@ function hover_details_Avg(){
 
 }
 
-// function User_Profile(){
-//     // var user_input = document.getElementById("user_profile");
-//     // var OriginalContent = user_input.value;
+function User_Profile(){
+    var user_input = document.getElementById("user_profile");
+    var OriginalContent = user_input.value;
 
-//     // user_input.addEventListener("mouseenter",function(){
-//     //     user_input.value="Profile!";
-//     // });
-//     // user_input.addEventListener("mouseleave",function(){
-//     //     user_input.value= OriginalContent;
-//     // });
-//     $(document).ready(function(){
-//         $("user_profile").on('img',function(){
-//             var user_input = $(this).fadeTo(0,0).hover('moseenter',function(){
-//                 $(this).fadeTo(100,1);}, function() {$(this).fadeTo(100,0);
-//             });
-//         });
-//     });
-// }
+    user_input.addEventListener("mouseenter",function(){
+        user_input.value="Profile!";
+    });
+    user_input.addEventListener("mouseleave",function(){
+        user_input.value= OriginalContent;
+    });
+    // $(document).ready(function(){
+    //     $("user_profile").on('img',function(){
+    //         var user_input = $(this).fadeTo(0,0).hover('moseenter',function(){
+    //             $(this).fadeTo(100,1);}, function() {$(this).fadeTo(100,0);
+    //         });
+    //     });
+    // });
+}
