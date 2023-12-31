@@ -12,5 +12,4 @@
             $result = getdoctorappointment();
     }
 }
-
 ?>

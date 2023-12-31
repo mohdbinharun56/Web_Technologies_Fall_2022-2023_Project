@@ -1,6 +1,6 @@
 <?php
     include '../models/Database.php';
-    session_start();
+    // session_start();
 
     
     //validation
@@ -8,12 +8,12 @@
     $dateError=$timeError=$doctorError=$departmentError="";
 
     if(isset($_POST['insert'])){
-        if(empty($_POST['selectdate'])){
-            $dateError = "Date is required!";
-        }
-        else{
-            $date = $_POST['selectdate'];
-        }
+        // if(empty($_POST['selectdate'])){
+        //     $dateError = "Date is required!";
+        // }
+        // else{
+        //     $date = $_POST['selectdate'];
+        // }
         if(empty($_POST['selecttime'])){
             $timeError = "Time is required!";
         }
@@ -34,14 +34,14 @@
         }
 
         //insertion
-        if(!empty($_POST['selectdate']) && !empty($_POST['selecttime']) && !empty($_POST['doctorname']))
+        if(!empty($_POST['selecttime']) && !empty($_POST['doctorname']))
         {
-            $selectdate = $_POST['selectdate'];
+            // $selectdate = $_POST['selectdate'];
             $selecttime = $_POST['selecttime'];
             $selectdocotor = $_POST['doctorname'];
             $department = $_POST['department'];
 
-            getinsertTimeschedule($selectdate,$selecttime,$selectdocotor,$department);
+            getinsertTimeschedule($selecttime,$selectdocotor,$department);
             header("location:../views/AllowDateTime.php");
         }
 
