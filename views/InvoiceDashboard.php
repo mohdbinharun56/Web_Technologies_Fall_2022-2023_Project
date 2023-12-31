@@ -6,44 +6,50 @@ include '../controllers/InvoiceDashboardControl.php';
 <html>
     <head>
         <title>Dashboard</title>
+        <link rel="stylesheet" href="../css/Dashboardstyle.css">
     </head>
 
     <body>
-       <center> <table border="1" style="width: 700px;">
-            <tr style="width: 200px; height: 50px;">
-                <td style="text-align:right"> 
-                <a href="../controllers/Logout.php">Logout</a></td>
+    <h1>Invoice Dashboard</h1>
+        <ul>
+            <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+            <li><a href="PatientList.php" class="navbar">Patient</a></li>
+            <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+            <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+            <a href="../controllers/Logout.php" id="logout">Logout</a>
+        </ul>
+       <center> <table border="1" id="outertable">
+            <tr id="outertr1">
+                <td> 
+                <form action="" method="post"><input type="submit" name="transitionlist" id="button" value="Invoice" style="margin: 10px 750px 10px 10px"> </form>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <h1>Invoice Dashboard</h1><br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                    <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-                    <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-                    <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-                    <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-                    <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-                    <a href="">Seetings</a> &nbsp &nbsp &nbsp <br><br><br><br> -->
-                    &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Total Payment: ",$totalpayment;?>"  style="height: 100px;text-align:center;"readonly> &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Due: ",$totaldue;?>" style="height: 100px;text-align:center;" readonly> <br><br>&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Total Paid:",$totalpaid;?>" style="height:100px;" readonly> &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Total Unpaid:",$totalunpaid;?>" style="height:100px;" readonly> &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <br><br><br><br><br>
-                    <form method="post">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <select name="doctorname">
-                      <option value="">Select_Doctor</option>
-                      <option value="A">A</option>
-                      <option value="B">B</B></option>
-                      <option value="C">C</option>
-                      <option value="D">D</option>
-                      <option value="E">E</option>
-                      <option value="F">F</option>
-                    </select>&nbsp &nbsp
-                    <input type="submit" name="searchdoctor" value="click">&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-                    <input type="text" value="<?php echo "Payment per doctor:",$total_specific_doctor_payment;?>" style="height:100px;" readonly> <br><br>
-                    
-                    <center><input type="submit" name="transitionlist" value="TransactionList" style="height:30px;color:blue;"></center>
+                    <input type="text" class="count" value="<?php echo "Total Payment: ",$totalpayment;?>"readonly>
+                    <input type="text" class="count" value="<?php echo "Due: ",$totaldue;?>" readonly>
+                    <input type="text" class="count" value="<?php echo "Total Paid:",$totalpaid;?>" readonly> <br><br>
+                    <input type="text" class="count" value="<?php echo "Total Unpaid:",$totalunpaid;?>"readonly>
+                    <input type="text" class="count" value="<?php echo "Payment per doctor:",$total_specific_doctor_payment;?>"readonly>
+                    <form method="post">
+                    <input type="text" name="doctorname" placeholder="Search...." style="margin-left:550px; margin-top: 25px; height: 25px">
+                    <input type="submit" name="searchdoctor"  value="click" id="button">
                     </form>
+                    <center>
+                    
+                        <!-- <select name="doctorname">
+                        <option value="">Select_Doctor</option>
+                        <option value="A">A</option>
+                        <option value="B">B</B></option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                        <option value="F">F</option>
+                        </select>&nbsp &nbsp -->
+                        <!-- <input type="text" name="doctorname" id="search" placeholder="Search....">
+                        <input type="submit" name="searchdoctor"  value="click" id="button"> -->
+                    
+                    </center>
 
                     <br><br><br><br>
                 </td>
