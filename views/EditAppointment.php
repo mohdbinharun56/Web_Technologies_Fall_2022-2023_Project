@@ -3,45 +3,55 @@ include '../controllers/UpdateAppointmentControl.php'
 ?>
 <!DOCTYPE HTML>
 <html>
+    <head>
+        <title>Edit Appoinment</title>
+        <link rel="stylesheet" href="../css/Dashboardstyle.css">
+    </head>
     <body>
+    <h1>Appoinment View</h1>
+                <ul>
+                    <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+                    <li><a href="PatientList.php" class="navbar">Patient</a></li>
+                    <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+                    <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+                    <a href="../controllers/Logout.php" id="logout">Logout</a>
+                </ul>
         <center>
-            <table border="1" style="width: 700px;">
-                <tr style="width:200px; heigth: 10px;">
-                <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
+            <table border="1" id="outertable">
+                <tr id="outertr1">
+                <td> <br><br><br></td>
                 </tr>
-                <tr style="height:200px;">
-                    <td><h1>Appoinment View</h1><br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                        <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-                        <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-                        <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-                        <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-                        <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-                        <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
+                <tr>
+                <td>
                         <center>
-                            <table border="1" style="width: 500px;">
+                            <table border="1" id="innertable1">
                             <form method="get" action="../controllers/UpdateAppointmentControl.php">
                             <?php while($r=mysqli_fetch_assoc($result)){?>
-                                <tr style="text-align:center;">
+                                <tr>
                                     <td>
-                                        <label>SLNo</label>
+                                    <br><br>
+                                        <label>SLNo:</label>
                                         <input type="number" name="slno" value="<?php echo $r['SLNo'];?>" readonly><br><br>
-                                        <label>AppointmentID</label>
+                                       
+                                        <label>AppointmentID:</label>
                                         <input type="text" name="appointmentid" value="<?php echo $r['AppoinmentID'];?>" readonly><br><br>
-                                        <label>Patient Name</label>
+                                        <label>Patient Name:</label>
                                         <input type="text" name="patientname" value="<?php echo $r['Patient_name'];?>"><br><br>
-                                        <label>Doctor Name</label>
+                                        <label>Doctor Name:</label>
                                         <input type="text" name="doctorname" value="<?php echo $r['Doctor_name'];?>"><br><br>
-                                        <label>Department</label>
+                                        <label>Department:</label>
                                         <input type="text" name="department" value="<?php echo $r['Department'];?>"><br><br>
-                                        <label>Appoinment Date</label>
+                                        <label>Appoinment Date:</label>
                                         <input type="text" name="appointmentdate" value="<?php echo $r['Appoinment_date'];?>" readonly><br><br>
-                                        <label>serial</label>
+                                        <label>serial:</label>
                                         <input type="number" name="serial" value="<?php echo $r['Serial'];?>"><br><br>
-
+                                        <button name="update" id="button">UPDATE</button><br><br>
                                         <?php } ?>
-                                        <button name="update">UPDATE</button><br><br>
+
+                                        
 
                                     </td>
+                                    
                                 </tr>
                                 
                                 </form>
