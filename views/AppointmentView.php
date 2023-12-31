@@ -4,69 +4,77 @@ include '../controllers/AppointmentviewControl.php';
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title></title>
+    <title>Appointment View</title>
+    <link rel="stylesheet" href="../css/Dashboardstyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="../JavaScript/Access.js"></script>
   </head>
   <body>
-      <center><table border="1" style="width: 900px;">
-        <tr style="width:200px; heigth: 10px;">
-          <td style="text-align: right;" ><a href="../controllers/Logout.php">Logout</a> <br><br><br></td>
-        </tr>
+    <h3>Appoinment View</h3>
+      <ul>
+        <li><a href="Dashboard.php" class="navbar">Dashboard</a></li>
+        <li><a href="PatientList.php" class="navbar">Patient</a></li>
+        <li><a href="AppointmentView.php" class="navbar">Appointment</a></li>
+        <li><a href="InvoiceDashboard.php" class="navbar">Transaction</a><br> <br></li>
+        <a href="../controllers/Logout.php" id="logout">Logout</a>
+      </ul>
+      <center>
+      <table border="1" id="outertable">
         <tr>
           <td style="display:flex;">
-          <form action="SelectDoctor.php"><button type="submit" name="add">Add Appoinment</button></form>
-          <form action="../controllers/AllowDateTimeControl.php" method="post"><button type="submit" name="makedatetime">Create Date/Time</button> </form>
-          <form action="AppointmentDoctorList.php"><button type="submit" name="doctorappointment">Doctor Appointment</button> </form>  
+          <form action="SelectDoctor.php"><button name="add" class="contain">Add Appoinment</button></form>
+          <form action="../controllers/AllowDateTimeControl.php" method="post"><button name="makedatetime" class="contain">Create Date/Time</button> </form>
+          <form action="AppointmentDoctorList.php"><button name="doctorappointment" class="contain">Doctor Appointment</button> </form>  
         </td>
         </tr>
-        <tr style="height:200px;">
-          <td><h3>Appoinment View</h3><br> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            <a href="Dashboard.php">Dashboard</a> &nbsp &nbsp &nbsp 
-            <a href="PatientList.php">Patient</a>&nbsp &nbsp &nbsp
-            <a href="AppointmentView.php">Appointment</a>&nbsp &nbsp &nbsp
-            <a href="InvoiceDashboard.php">Transaction</a>&nbsp &nbsp &nbsp<br> <br><br><br>
-            <!-- <a href="">Notification</a>&nbsp &nbsp &nbsp
-            <a href="">Seetings</a> &nbsp &nbsp &nbsp <br> <br><br><br> -->
-            
+        <tr>
+        
+          <td>
             <center>
-              <table border="" style="width: 500px; text-align:center;">
-                <tr style="text-align:center;">
-                  <br><br>
-                    <th>AppoinmentID</th>
-                    <th>Patient_name</th>
-                    <th>Doctor_name</th>
-                    <th>Department</th>
-                    <th>Appoinment_day</th>
-                    <th>Appoinment_date</th>
-                    <th>Appoinment_time</th>
-                    <th>Serial</th>
-                    <th>Action</th>
-                </tr>           
-                <?php while($r=mysqli_fetch_assoc($result)){ ?>
-                <tr>
-                    <td><?php echo $r['AppoinmentID'];?></td>
-                    <td><?php echo $r['Patient_name']; ?></td>
-                    <td><?php echo $r['Doctor_name'];?></td>
-                    <td><?php echo $r['Department']; ?></td>
-                    <td><?php echo $r['Appointment_day']; ?></td>
-                    <td><?php echo $r['Appoinment_date']; ?></td>
-                    <td><?php echo $r['Appoinment_time']; ?></td>
-                    <td><?php echo $r['Serial'];?></td>
+              <input type="text" name="" id="search" placeholder="Search...." onclick="Search()">
+              <table border="1" id="innertable">
+                <thead>
+                  <tr id="innerdata">
+                    <br><br>
+                      <th>AppoinmentID</th>
+                      <th>Patient_name</th>
+                      <th>Doctor_name</th>
+                      <th>Department</th>
+                      <th>Appoinment_day</th>
+                      <th>Appoinment_date</th>
+                      <th>Appoinment_time</th>
+                      <th>Serial</th>
+                      <th>Action</th>
+                  </tr>            
+                  <?php while($r=mysqli_fetch_assoc($result)){ ?>
+                  <tbody>
+                  <tr id="innerdata">
+                      <td><?php echo $r['AppoinmentID'];?></td>
+                      <td><?php echo $r['Patient_name']; ?></td>
+                      <td><?php echo $r['Doctor_name'];?></td>
+                      <td><?php echo $r['Department']; ?></td>
+                      <td><?php echo $r['Appointment_day']; ?></td>
+                      <td><?php echo $r['Appoinment_date']; ?></td>
+                      <td><?php echo $r['Appoinment_time']; ?></td>
+                      <td><?php echo $r['Serial'];?></td>
 
-                    <td>
-                      <form  action="EditAppointment.php" method="get"><button type="submit" name="edit"  value="<?php echo $r["SLNo"] ; ?>">Edit</button> </form>
-                      <form action="../controllers/DeleteAppointmentControl.php" method="get"><button type="submit" name="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
-                      <form  action="../controllers/InsertInvoiceControl.php" method="get"><button type="submit" name="addpayment"  value="<?php echo $r["SLNo"] ; ?>">InsertPayment</button> </form>
-                    </td>
-                    
-                </tr>
-                <?php } ?>
+                      <td>
+                        <form  action="EditAppointment.php" method="get"><button type="submit" name="edit" class="action" value="<?php echo $r["SLNo"] ; ?>">Edit</button> </form>
+                        <form action="../controllers/DeleteAppointmentControl.php" method="get"><button type="submit" name="delete" class="delete" value="<?php echo $r["SLNo"] ; ?>">Delete</button> </form>
+                        <form  action="../controllers/InsertInvoiceControl.php" method="get"><button type="submit" name="addpayment" class="action"  value="<?php echo $r["SLNo"] ; ?>">InsertPayment</button> </form>
+                      </td>
+                      
+                  </tr>
+                  <?php } ?>
               </table><br><br>
             </center>
 
           </td>
-        </tr> <br><br><br><br>
+        </tr> 
+        </tbody>
+                  
+        </thead>
+        <br><br><br><br>
       </table></center>
-    
-    
   </body>
 </html>
