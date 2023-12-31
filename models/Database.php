@@ -6,12 +6,7 @@ function getlogin($username,$password){
     $con = getconection();
     $sql="select * from staff where S_Username='$username' and Password='$password'";
     $result = mysqli_query($con,$sql);
-    if($result->num_rows>0){
-        while($r=mysqli_fetch_assoc($result)){
-            $_SESSION['username'] = $r['S_Username'];
-            header("location:../views/Dashboard.php");
-        }
-    }
+    return $result;
 }
 
 
@@ -59,8 +54,12 @@ function scheduleAppointment(){
     $result=mysqli_query($con,$sql4);
     return $result;
 }
-
-//not workingxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+function searchAppointScheduleCurrentdate($date){
+    $con = getconection();
+    $sql3 = "SELECT * FROM `appointment` WHERE Appoinment_date='$date'";
+    $result=mysqli_query($con,$sql3);
+    return $result;
+}
 function searchAppointSchedule($appdate){
     $con = getconection();
     $sql3 = "SELECT * FROM `appointment` WHERE Appoinment_date='$appdate'";
@@ -81,7 +80,6 @@ function getInsertpatient($patientname,$patientemail,$patientusername,$patientpa
     $con = getconection();
     $sql = "INSERT INTO `patient`(`Patient_Name`, `Email`, `Username`, `Password`, `Gender`, `Phone`, `Address`) VALUES ('$patientname','$patientemail','$patientusername','$patientpass','$patientgender',$patientphone,'$patientaddress');";
     mysqli_query($con,$sql);
-    //header("Location:../Views/PatientView.php");
 }
 
 //view patient profile
@@ -97,7 +95,6 @@ function getdeletePatient($delid){
     $con = getconection();
     $sql="delete from patient WHERE SLNo ='$delid';";
     mysqli_query($con,$sql);
-    // return 
 }
 
 //update patient 
@@ -123,7 +120,6 @@ function getAppointmentview(){
     return $result;
 }
 
-//check the unique appointmentID
 function getcheckuniqueID($id){
     
     $con = getconection();
@@ -132,15 +128,16 @@ function getcheckuniqueID($id){
     $result = mysqli_query($con,$sql);
     return $result;
 }
+
 //insert appointment
-function getaddAppointment($id,$patient_name,$doctor_name,$department,$Date,$time,$serial){
+function getaddAppointment($id,$patient_name,$doctor_name,$department,$Day,$dat,$time,$serial){
     $con = getconection();
     $result = getcheckuniqueID($id);
     if($result->num_rows > 0){
       echo '<script>alert("This appointment id already exist!")</script>';
     }
     else{
-      $sql2 = "INSERT INTO appointment(`AppoinmentID`, `Patient_name`, `Doctor_name`, `Department`, `Appoinment_date`,`Appoinment_time`, `Serial`) VALUES ('$id','$patient_name','$doctor_name','$department','$Date','$time',$serial)";
+      $sql2 = "INSERT INTO appointment(`AppoinmentID`, `Patient_name`, `Doctor_name`, `Department`, `Appointment_day`,`Appoinment_date`,`Appoinment_time`, `Serial`) VALUES ('$id','$patient_name','$doctor_name','$department','$Day','$dat','$time',$serial)";
       mysqli_query($con,$sql2);
       header("Location:../views/AppointmentView.php");
     }
@@ -218,9 +215,9 @@ function gettimeschedule(){
 } 
 
 //insert Doctor Appointment Date, DAy, Time schedule
-function getinsertTimeschedule($selectdate,$selecttime,$selectdocotor,$department){
+function getinsertTimeschedule($selecttime,$selectdocotor,$department){
     $con = getconection();
-    $sql1 = "insert into allowed_date_time (Date,Time,Doctor_name,Department) values ('$selectdate','$selecttime','$selectdocotor','$department')";
+    $sql1 = "insert into allowed_date_time (Time,Doctor_name,Department) values ('$selecttime','$selectdocotor','$department')";
     mysqli_query($con,$sql1);
 }
 
@@ -305,7 +302,7 @@ function getselectinvoice($editinvoice){
 //view doctor appointment list
 function getdoctorappointment(){
     $con = getconection();
-    $sql = "SELECT Doctor_name, Department, Available_Day FROM doctor";
+    $sql = "SELECT Doctor_name, Department,Fees,Available_Day FROM doctor";
     $result = mysqli_query($con,$sql);
     return $result;
 }
@@ -313,8 +310,37 @@ function getdoctorappointment(){
 //search doctor 
 function getsearchdoctor($name){
     $con = getconection();
-    $sql = "SELECT Doctor_name, Department, Available_Day FROM doctor where Doctor_name='$name'";
+    $sql = "SELECT Doctor_name, Department,Fees, Available_Day FROM doctor where Doctor_name='$name'";
     $result = mysqli_query($con,$sql);
     return $result;
 }
+
+//View staff profile
+function getUserProfile($username){
+    $con = getconection();
+    $sql = "select * from staff where S_Username='$username'";
+    $result = mysqli_query($con,$sql);
+    return $result;
+}
+
+//doctor details
+function getdoctordetails(){
+    $con = getconection();
+    $sql = "select Distinct Doctor_name from doctor";
+    $result1 = mysqli_query($con,$sql);
+    return $result1;
+}
+
+// update staff profile auto
+function getupdateStaff($total_working_hour,$total_salary,$username){
+    $con = getconection();
+    $sql1 = "update staff set Total_working_Hour='$total_working_hour', Total_Salary='$total_salary' where S_Username='$username'";
+    mysqli_query($con,$sql1);
+}
+// function getDoctorprofileList(){
+//     $con = getconection();
+//     $sql = "select Distinct Doctor_name,Department,Fees,Available_Day from doctor";
+//     $result = mysqli_query($con,$sql);
+//     return $result;
+// }
 ?>
